@@ -347,6 +347,7 @@ public class BBAnimatedImage: UIImage {
     
     /// Cancels asynchronous preload task
     public func bb_cancelPreloadTask() {
+        guard lock != nil else { return }
         lock.wait()
         if preloadTask != nil {
             OSAtomicIncrement32(&sentinel)
